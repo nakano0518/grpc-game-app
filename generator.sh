@@ -1,0 +1,1 @@
+protoc ms-highscore/v1/highscore.proto --go_out=plugins=grpc:.
