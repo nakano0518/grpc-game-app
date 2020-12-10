@@ -4,7 +4,7 @@ import (
 	pbgameengine "grpc-game-app/ms-game-engine/v1/gameengine"
 	pbhighscore "grpc-game-app/ms-highscore/v1/game"
 
-	"github.com/rs/zero-log/log"
+	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 )
 
