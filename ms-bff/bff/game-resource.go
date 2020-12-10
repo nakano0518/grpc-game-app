@@ -75,3 +75,25 @@ func (gr *gameResource) GetHighScore(c *gin.Context) {
 		"hs": hsString,
 	})
 }
+
+func (gr *gameResource) GetSize(c *gin.Context) {
+	sizeResponse, err := gr.gameEngineClient.GetSize(context.Background(), &pbgameengine.GetSizeRequest{})
+	if err != nil {
+		log.Error().Err(err).Msg("Error while getting size")
+	}
+	c.JSON(200, gin.H{
+		"size": sizeResponse.GetSize(),
+	})
+}
+
+func (gr *gameResource) SetScore(c *gin.Context) {
+	scoreString := c.Param("score")
+	scoreFloat64, _ := strconv.ParseFloat(scoreString, 64)
+
+	_, err := gr.gameEngineClient.SetScore(context.Background(), &pbgameengine.SetScoreRequest{
+		Score: scoreFloat64,
+	})
+	if err != nil {
+		log.Error().Err(err).Msg("Error while setting score in m-game-engine")
+	}
+}
